@@ -11,3 +11,5 @@ const textInputDecoration = InputDecoration(
 String userEmail = '';
 
 var confirmedProducts = ['Milk', 'Egg', 'Cardboard', 'Plastic', 'Chicken'];
+
+int totalPrice = 0;

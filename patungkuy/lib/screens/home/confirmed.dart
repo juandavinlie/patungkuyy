@@ -69,13 +69,23 @@ class _ConfirmedState extends State<Confirmed> {
               padding: EdgeInsets.all(25.0),
             ),
             Expanded(
-              flex: 5,
+              flex: 20,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 0),
                 child: Card(child: ConfirmedOrderList()),
               ),
             ),
-            Expanded(flex: 2, child: Text('THE TOTAL')),
+            Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 250,
+                    ),
+                    Text('TOTAL: '),
+                    Text(totalPrice.toString())
+                  ],
+                )),
             SizedBox(
               width: 152.0,
               child: RaisedButton.icon(
