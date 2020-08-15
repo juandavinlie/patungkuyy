@@ -27,7 +27,7 @@ class _AccountState extends State<Account> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             CircleAvatar(
-              backgroundImage: AssetImage('assets/avatar.jpg'),
+              backgroundImage: AssetImage('assets/scott.jpg'),
               radius: 50.0,
             ),
             Divider(
