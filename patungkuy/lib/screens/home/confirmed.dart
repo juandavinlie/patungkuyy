@@ -131,7 +131,9 @@ class _ConfirmedState extends State<Confirmed> {
                         FlatButton(
                           child: Text('Yes'),
                           onPressed: () {
-                            
+                            for (String s in confirmedProducts) {
+                              DatabaseService(uid: user.uid).deleteDataFromConfirmed(s);
+                            }
                             Navigator.of(context).pop();
                           },
                         ),
