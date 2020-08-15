@@ -87,7 +87,15 @@ class _ConfirmedState extends State<Confirmed> {
               ),
             ),
           ),
-          Expanded(flex: 1, child: Text('THE TOTAL')),
+          Expanded(
+            flex: 1,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('THE TOTAL'),
+                ]),
+          ),
           SizedBox(
             width: 152.0,
             child: RaisedButton.icon(
