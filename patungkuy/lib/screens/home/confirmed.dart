@@ -60,11 +60,11 @@ class _ConfirmedState extends State<Confirmed> {
                 color: Colors.blue,
               ),
               //color: Colors.blue,
-              // child: Container(
-              //   color: Colors.blue[200],
-              //   padding: EdgeInsets.all(5),
-              //   child: Text('YOUR RECEIPT'),
-              // ),
+              child: Container(
+                color: Colors.blue[200],
+                padding: EdgeInsets.all(5),
+                child: Text('YOUR RECEIPT'),
+              ),
               margin: EdgeInsets.all(5.0),
               padding: EdgeInsets.all(25.0),
             ),
@@ -75,16 +75,7 @@ class _ConfirmedState extends State<Confirmed> {
                 child: Card(child: ConfirmedOrderList()),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text('THE TOTAL'),
-                ],
-              ),
-            ),
+            Expanded(flex: 2, child: Text('THE TOTAL')),
             SizedBox(
               width: 152.0,
               child: RaisedButton.icon(
@@ -110,10 +101,17 @@ class _ConfirmedState extends State<Confirmed> {
                         ),
                       ],
                     ),
+                    barrierDismissible: false,
                   );
                 },
-                label: Text('PAY NOW'),
                 icon: Icon(Icons.payment),
+                label: Text(
+                  'PAY NOW',
+                  style: TextStyle(
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 color: Colors.green,
               ),
             ),
@@ -132,7 +130,8 @@ class _ConfirmedState extends State<Confirmed> {
                           child: Text('Yes'),
                           onPressed: () {
                             for (String s in confirmedProducts) {
-                              DatabaseService(uid: user.uid).deleteDataFromConfirmed(s);
+                              DatabaseService(uid: user.uid)
+                                  .deleteDataFromConfirmed(s);
                             }
                             Navigator.of(context).pop();
                           },
