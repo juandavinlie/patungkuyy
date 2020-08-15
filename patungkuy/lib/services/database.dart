@@ -113,8 +113,14 @@ class DatabaseService {
     Firestore.instance.collection('users').document(uid).collection('mycart').document(uidOFDeleted).delete();
   }
 
+  void deleteDataFromConfirmed(String uidOFDeleted) {
+    userWithConfirmedOrdersCollection.document(uid).collection('confirmedorders').document(uidOFDeleted).delete();
+  }
+
   Stream<List<ConfirmedOrder>> get confirmedOrders {
     return Firestore.instance.collection('userswithconfirmedorders').document(uid).collection('confirmedorders').snapshots().map(_confirmedOrderListFromSnapshot);
   }
+
+  
 
 }

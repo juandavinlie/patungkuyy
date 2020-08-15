@@ -14,6 +14,7 @@ class ConfirmedOrderTile extends StatefulWidget {
 class _ConfirmedOrderTileState extends State<ConfirmedOrderTile> {
   @override
   Widget build(BuildContext context) {
+    print((widget.index + 1).toString() + '.  ' + widget.confirmedorder.order.name);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child:
