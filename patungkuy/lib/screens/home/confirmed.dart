@@ -10,7 +10,16 @@ class Confirmed extends StatefulWidget {
 }
 
 class _ConfirmedState extends State<Confirmed> {
-  List<String> myCart = ['Egg', 'Chicken', 'Plastic'];
+  List<String> myCart = [
+    'Egg',
+    'Chicken',
+    'Plastic',
+    'Container',
+    'Container1',
+    'Container2',
+    'Container3',
+    'Contaier4',
+  ];
 
   @override
   void _addOrderPanel() {
