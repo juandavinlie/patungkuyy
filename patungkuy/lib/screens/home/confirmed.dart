@@ -52,6 +52,45 @@ class _ConfirmedState extends State<Confirmed> {
             ),
           ),
           Expanded(flex: 2, child: Text('THE TOTAL')),
+          SizedBox(
+            width: 152.0,
+            child: RaisedButton.icon(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    title: Text('Pay Now?'),
+                    content: Text(
+                        'If you press "yes", your balance will be deducted and you can no longer cancel your order.'),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Yes'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      FlatButton(
+                        child: Text('No'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+                  barrierDismissible: false,
+                );
+              },
+              icon: Icon(Icons.payment),
+              label: Text(
+                'PAY NOW',
+                style: TextStyle(
+                  letterSpacing: 1.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              color: Colors.green,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton.icon(

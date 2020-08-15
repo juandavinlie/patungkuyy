@@ -36,17 +36,31 @@ class _HomeState extends State<Home> {
           });
     }
 
+    Widget getlistOne() {
+      return FlatButton.icon(
+        icon: Icon(Icons.add),
+        label: Text('ADD ORDER'),
+        onPressed: () => _addOrderPanel(),
+      );
+    }
+
+    Widget getlistTwo() {
+      return SizedBox.shrink();
+    }
+
+    Widget getlistThree() {
+      return SizedBox.shrink();
+    }
+
+    var getlist = [getlistOne(), getlistTwo(), getlistThree()];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[selecteditem]),
         backgroundColor: Colors.blue[300],
         elevation: 0.0,
         actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(Icons.add),
-            label: Text('ADD ORDER'),
-            onPressed: () => _addOrderPanel(),
-          )
+          getlist[selecteditem],
         ],
       ),
       drawer: DrawerCustom(
