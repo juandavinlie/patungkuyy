@@ -54,6 +54,26 @@ class _HomeState extends State<Home> {
 
     var getlist = [getlistOne(), getlistTwo(), getlistThree()];
 
+    Widget getFloatOne() {
+      return SizedBox.shrink();
+    }
+
+    Widget getFloatTwo() {
+      return FloatingActionButton.extended(
+        onPressed: () {
+          pageController.animateToPage(3,
+              duration: Duration(milliseconds: 400), curve: Curves.linear);
+        },
+        label: Text('ready'),
+      );
+    }
+
+    Widget getFloatThree() {
+      return SizedBox.shrink();
+    }
+
+    var floats = [getFloatOne(), getFloatTwo(), getFloatThree()];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[selecteditem]),
@@ -101,6 +121,7 @@ class _HomeState extends State<Home> {
           });
         },
       ),
+      floatingActionButton: floats[selecteditem],
     );
   }
 }
