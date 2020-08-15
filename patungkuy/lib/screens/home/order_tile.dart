@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patungkuy/models/order.dart';
-import 'package:patungkuy/models/brew.dart';
+import 'package:patungkuy/models/user.dart';
+import 'package:patungkuy/services/database.dart';
+import 'package:provider/provider.dart';
 
 class OrderTile extends StatefulWidget {
   final Order order;
@@ -14,7 +16,10 @@ class _OrderTileState extends State<OrderTile> {
   @override
   int counter = 0;
   int counter2 = 0;
+
   Widget build(BuildContext context) {
+    
+    final user = Provider.of<User>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
       child: Card(
@@ -30,7 +35,8 @@ class _OrderTileState extends State<OrderTile> {
                   onPressed: counter2 == 0 ? null : () {
                     setState(() {
                       counter2 = 0;
-                    });;
+                      DatabaseService(uid: user.uid).updateTempOrderData(widget.order.name, widget.order.price, widget.order.quantity, widget.order.category, counter);
+                    });
                   },
                   icon: Icon(Icons.check_box),
                   label: Text(

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:patungkuy/models/cart_item.dart';
 import 'package:patungkuy/models/temp_order.dart';
+import 'package:patungkuy/screens/home/temp_orderlist.dart';
+import 'package:patungkuy/services/database.dart';
 import 'package:patungkuy/shared/appbar.dart';
 import 'package:patungkuy/shared/drawer.dart';
 import 'package:patungkuy/shared/constants.dart';
 import 'package:patungkuy/screens/home/add_order.dart';
+import 'package:patungkuy/models/user.dart';
+import 'package:patungkuy/models/temp_order.dart';
+import 'package:provider/provider.dart';
 
 class MyCart extends StatefulWidget {
   List<TempOrder> listOfTempOrders;
@@ -32,20 +37,15 @@ class _MyCartState extends State<MyCart> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue[100],
-      body: ListView.builder(
-          itemCount: titles.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
-              child: Card(
-                child: ListTile(
-                  title: Text(titles[index].item),
-                ),
-              ),
-            );
-          }),
+
+    final user = Provider.of<User>(context);
+
+    return StreamProvider<List<TempOrder>>.value(
+        value: DatabaseService(uid: user.uid).tempOrders,
+          child: Scaffold(
+          backgroundColor: Colors.blue[100],
+          body: TempOrderList()
+        )
     );
   }
 }
