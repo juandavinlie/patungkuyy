@@ -32,7 +32,7 @@ class _OrderTileState extends State<OrderTile> {
               title: Text(widget.order.name),
               subtitle: Text('Rp ' + widget.order.price.toString()),
               trailing: RaisedButton.icon(
-                  onPressed: counter2 == 0 ? null : () {
+                  onPressed: counter2 == 0 || counter == 0 ? null : () {
                     setState(() {
                       counter2 = 0;
                       DatabaseService(uid: user.uid).updateTempOrderData(widget.order.name, widget.order.price, widget.order.quantity, widget.order.category, counter);

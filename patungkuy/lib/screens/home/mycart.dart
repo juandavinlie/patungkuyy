@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patungkuy/models/cart_item.dart';
 import 'package:patungkuy/models/temp_order.dart';
@@ -10,6 +11,7 @@ import 'package:patungkuy/screens/home/add_order.dart';
 import 'package:patungkuy/models/user.dart';
 import 'package:patungkuy/models/temp_order.dart';
 import 'package:provider/provider.dart';
+import 'package:patungkuy/services/database.dart';
 
 class MyCart extends StatefulWidget {
   List<TempOrder> listOfTempOrders;
@@ -45,8 +47,17 @@ class _MyCartState extends State<MyCart> {
           backgroundColor: Colors.blue[100],
           body: TempOrderList(),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {},
-            label: Text('ready'),
+            onPressed: () async {
+              DatabaseService ds = DatabaseService(uid: user.uid);
+              ds.updateTempOrderData('AA', 0, 0, 'Stopper', 0);
+              // var query = ds.userWithConfirmedOrdersCollection;
+              // query.snapshots().forEach((element) {
+              //   element.documents.forEach((element2) async {
+              //     await ds.updateCompOrderData('juan', 203, 139, 'orang', 3);
+              //   });
+              // });
+            },
+            label: Text('Ready'),
           ),
           //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         ));
