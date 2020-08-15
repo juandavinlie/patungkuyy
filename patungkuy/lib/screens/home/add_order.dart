@@ -89,7 +89,8 @@ class _AddOrderState extends State<AddOrder> {
             onPressed: () async {
               if (_formKey.currentState.validate()) {
                 Navigator.pop(context);
-                await DatabaseService(uid: unique.v4()).updateOrderData(_selectedItems, 20, 0, 'dairy');
+                await DatabaseService(uid: unique.v4())
+                    .updateOrderData(_selectedItems, 20, 0, 'dairy');
               }
             },
             color: Colors.blue[300],
