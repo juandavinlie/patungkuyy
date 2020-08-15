@@ -32,9 +32,26 @@ class _ConfirmedState extends State<Confirmed> {
       body: Column(
         children: <Widget>[
           SizedBox(height: 20.0),
-          Text('YOUR RECEIPT'),
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/patungkuy.png'),
+                fit: BoxFit.cover,
+              ),
+              shape: BoxShape.circle,
+              color: Colors.blue,
+            ),
+            //color: Colors.blue,
+            child: Container(
+              color: Colors.blue[200],
+              padding: EdgeInsets.all(5),
+              child: Text('YOUR RECEIPT'),
+            ),
+            margin: EdgeInsets.all(5.0),
+            padding: EdgeInsets.all(25.0),
+          ),
           Expanded(
-            flex: 1,
+            flex: 5,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 0),
               child: Card(
