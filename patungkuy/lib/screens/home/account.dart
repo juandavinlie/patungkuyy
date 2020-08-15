@@ -26,9 +26,27 @@ class _AccountState extends State<Account> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/avatar.jpg'),
-              radius: 50.0,
+            Row(
+              children: [
+                SizedBox(
+                  width: 30,
+                ),
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/scott.jpg'),
+                  radius: 50.0,
+                ),
+                SizedBox(
+                  width: 60,
+                ),
+                Icon(
+                  Icons.verified_user,
+                  color: Colors.blue,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Verified user'),
+                ),
+              ],
             ),
             Divider(
               height: 30.0,
