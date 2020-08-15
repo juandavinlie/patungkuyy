@@ -12,6 +12,7 @@ import 'order_list.dart';
 import 'package:patungkuy/services/database.dart';
 import 'package:patungkuy/services/auth.dart';
 import 'package:patungkuy/models/order.dart';
+import 'package:patungkuy/models/user.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -26,6 +27,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    final user = Provider.of<User>(context);
+
     void _addOrderPanel() {
       showModalBottomSheet(
           context: context,
@@ -60,11 +64,12 @@ class _HomeState extends State<Home> {
 
     Widget getFloatTwo() {
       return FloatingActionButton.extended(
-        onPressed: () {
+        onPressed: () async {
+          await DatabaseService(uid: user.uid).updateTempOrderData('AA', 0, 0, 'Stopper', 0);
           pageController.animateToPage(3,
               duration: Duration(milliseconds: 400), curve: Curves.linear);
         },
-        label: Text('ready'),
+        label: Text('Ready'),
       );
     }
 

@@ -12,7 +12,6 @@ class _ConfirmedOrderListState extends State<ConfirmedOrderList> {
 
   @override
   Widget build(BuildContext context) {
-
     final confirmedorders = Provider.of<List<ConfirmedOrder>>(context) ?? [];
 
     return ListView.builder(

@@ -47,19 +47,19 @@ class _MyCartState extends State<MyCart> {
         child: Scaffold(
           backgroundColor: Colors.blue[100],
           body: TempOrderList(),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () async {
-              DatabaseService ds = DatabaseService(uid: user.uid);
-              await ds.updateTempOrderData('AA', 0, 0, 'Stopper', 0);
-              // var query = ds.userWithConfirmedOrdersCollection;
-              // query.snapshots().forEach((element) {
-              //   element.documents.forEach((element2) async {
-              //     await ds.updateCompOrderData('juan', 203, 139, 'orang', 3);
-              //   });
-              // });
-            },
-            label: Text('Ready'),
-          ),
+          // floatingActionButton: FloatingActionButton.extended(
+          //   onPressed: () async {
+          //     print("GOT HERE");
+          //     await DatabaseService(uid: user.uid).updateTempOrderData('AA', 0, 0, 'Stopper', 0);
+          //     // var query = ds.userWithConfirmedOrdersCollection;
+          //     // query.snapshots().forEach((element) {
+          //     //   element.documents.forEach((element2) async {
+          //     //     await ds.updateCompOrderData('juan', 203, 139, 'orang', 3);
+          //     //   });
+          //     // });
+          //   },
+          //   label: Text('Ready'),
+          // ),
           //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         ));
   }
