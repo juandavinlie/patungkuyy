@@ -25,6 +25,29 @@ class _HomeState extends State<Home> {
   int selecteditem = 0;
   var titles = ['Orders', 'My Cart', 'Confirmed'];
 
+  Widget getFloatOne() {
+      return SizedBox.shrink();
+    }
+
+    Widget getFloatTwo(String id) {
+      return FloatingActionButton.extended(
+        onPressed: () async {
+          for (String s in confirmedProducts) {
+            DatabaseService(uid: id).deleteDataFromConfirmed(s);
+          }
+          await DatabaseService(uid: id).updateTempOrderData('AA', 0, 0, 'Stopper', 0);
+          pageController.animateToPage(3,
+              duration: Duration(milliseconds: 400), curve: Curves.linear);
+        },
+        label: Text('Ready'),
+      );
+    }
+
+    Widget getFloatThree() {
+      return SizedBox.shrink();
+    }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -58,26 +81,9 @@ class _HomeState extends State<Home> {
 
     var getlist = [getlistOne(), getlistTwo(), getlistThree()];
 
-    Widget getFloatOne() {
-      return SizedBox.shrink();
-    }
+    
 
-    Widget getFloatTwo() {
-      return FloatingActionButton.extended(
-        onPressed: () async {
-          await DatabaseService(uid: user.uid).updateTempOrderData('AA', 0, 0, 'Stopper', 0);
-          pageController.animateToPage(3,
-              duration: Duration(milliseconds: 400), curve: Curves.linear);
-        },
-        label: Text('Ready'),
-      );
-    }
-
-    Widget getFloatThree() {
-      return SizedBox.shrink();
-    }
-
-    var floats = [getFloatOne(), getFloatTwo(), getFloatThree()];
+    var floats = [getFloatOne(), getFloatTwo(user.uid), getFloatThree()];
 
     return Scaffold(
       appBar: AppBar(
@@ -118,6 +124,7 @@ class _HomeState extends State<Home> {
         animationCurve: Curves.easeOutCubic,
         onTap: (value) {
           setState(() {
+            DatabaseService(uid: user.uid).deleteData('AA');
             if (pageController.hasClients) {
               selecteditem = value;
             }
