@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:patungkuy/models/confirmed_order.dart';
 import 'package:patungkuy/models/order.dart';
 import 'package:patungkuy/models/temp_order.dart';
 import 'package:patungkuy/screens/home/orders.dart';
@@ -36,13 +37,29 @@ class DatabaseService {
     }).toList();
   }
 
+  List<ConfirmedOrder> _confirmedOrderListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return ConfirmedOrder(
+        order: Order(
+            name: doc.data['name'] ?? '',
+            price: doc.data['price'] ?? 0,
+            quantity: doc.data['quantity'] ?? 0,
+            category: doc.data['category'] ?? '',
+        ),
+        tempQuantity: doc.data['tempQuantity']
+      );
+    }).toList();
+  }
+
   // collection reference
   final CollectionReference orderCollection =
       Firestore.instance.collection('orders');
 
   final CollectionReference userCollection = 
       Firestore.instance.collection('users');
-  
+
+  final CollectionReference userWithConfirmedOrdersCollection = 
+      Firestore.instance.collection('userswithconfirmedorders');
 
   Future updateUserData(
       String name, String email) async {
@@ -73,6 +90,17 @@ class DatabaseService {
     });
   }
 
+  Future updateCompOrderData(
+      String name, int price, int quantity, String category, int tempQuantity) async {
+    return await userWithConfirmedOrdersCollection.document(uid).collection('confirmedorders').document(name).setData({
+      'name': name,
+      'price': price,
+      'quantity': quantity,
+      'category': category,
+      'tempQuantity': tempQuantity
+    });
+  }
+
   Stream<List<Order>> get orders {
     return orderCollection.snapshots().map(_orderListFromSnapshot);
   }
@@ -83,6 +111,10 @@ class DatabaseService {
 
   void deleteData(String uidOFDeleted) {
     Firestore.instance.collection('users').document(uid).collection('mycart').document(uidOFDeleted).delete();
+  }
+
+  Stream<List<ConfirmedOrder>> get confirmedOrders {
+    return Firestore.instance.collection('userswithconfirmedorders').document(uid).collection('confirmedorders').snapshots().map(_confirmedOrderListFromSnapshot);
   }
 
 }

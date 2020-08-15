@@ -48,19 +48,12 @@ class _OrderTileState extends State<OrderTile> {
                 ),
               ),
               trailing: RaisedButton.icon(
-                  onPressed: counter2 == 0
-                      ? null
-                      : () {
-                          setState(() {
-                            counter2 = 0;
-                            DatabaseService(uid: user.uid).updateTempOrderData(
-                                widget.order.name,
-                                widget.order.price,
-                                widget.order.quantity,
-                                widget.order.category,
-                                counter);
-                          });
-                        },
+                  onPressed: counter2 == 0 || counter == 0 ? null : () {
+                    setState(() {
+                      counter2 = 0;
+                      DatabaseService(uid: user.uid).updateTempOrderData(widget.order.name, widget.order.price, widget.order.quantity, widget.order.category, counter);
+                    });
+                  },
                   icon: Icon(Icons.check_box),
                   label: Text(
                     'CONFIRM',
