@@ -50,7 +50,7 @@ class _MyCartState extends State<MyCart> {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () async {
               DatabaseService ds = DatabaseService(uid: user.uid);
-              ds.updateTempOrderData('AA', 0, 0, 'Stopper', 0);
+              await ds.updateTempOrderData('AA', 0, 0, 'Stopper', 0);
               // var query = ds.userWithConfirmedOrdersCollection;
               // query.snapshots().forEach((element) {
               //   element.documents.forEach((element2) async {
