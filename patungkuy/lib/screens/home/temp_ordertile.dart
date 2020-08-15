@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:patungkuy/models/order.dart';
 import 'package:patungkuy/models/temp_order.dart';
+import 'package:patungkuy/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:patungkuy/models/user.dart';
 
 class TempOrderTile extends StatefulWidget {
 
@@ -13,8 +16,12 @@ class TempOrderTile extends StatefulWidget {
 }
 
 class _TempOrderTileState extends State<TempOrderTile> {
+
   @override
   Widget build(BuildContext context) {
+
+    final user = Provider.of<User>(context);
+
     return Padding(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: Card(
@@ -75,7 +82,7 @@ class _TempOrderTileState extends State<TempOrderTile> {
                         FlatButton.icon(
                             onPressed: () {
                               setState(() {
-                                widget.tempOrder.tempQuantity = 0;
+                                DatabaseService(uid: user.uid).deleteData(widget.tempOrder.order.name);
                               });
                             },
                             icon: Icon(Icons.delete),
