@@ -13,10 +13,13 @@ class AddOrder extends StatefulWidget {
 class _AddOrderState extends State<AddOrder> {
   final _formKey = GlobalKey<FormState>();
   final List<String> items = ['Egg', 'Milk', 'Chicken', 'Plastic', 'Cardboard'];
+  final Map<String, String> map = {'Egg': 'Dairy', 'Milk': 'Dairy', 'Chicken': 'Poultry', 'Plastic': 'Material', 'Cardboard': 'Material'};
 
   String _selectedItems;
   int counter = 0;
   final Uuid unique = Uuid();
+  bool duplicate = false;
+  
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -43,8 +46,8 @@ class _AddOrderState extends State<AddOrder> {
           Padding(
             padding: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 0),
             child: DropdownButtonFormField(
-              validator: (val) => val == null ? "Please Select an Item" : null,
-              decoration:
+              validator: (val) => duplicate ? 'The item you have chosen can be seen at Orders.' : val == null ? "Please Select an Item" : null,
+              decoration: 
                   textInputDecoration.copyWith(hintText: 'Select an Item'),
               items: items.map((item) {
                 return DropdownMenuItem(
@@ -88,6 +91,8 @@ class _AddOrderState extends State<AddOrder> {
           RaisedButton(
             onPressed: () async {
               if (_formKey.currentState.validate()) {
+                DatabaseService ds = DatabaseService(uid: _selectedItems);
+                await ds.updateOrderData(_selectedItems, 20, 0, map[_selectedItems]);
                 Navigator.pop(context);
                 await DatabaseService(uid: unique.v4())
                     .updateOrderData(_selectedItems, 20, 0, 'dairy');

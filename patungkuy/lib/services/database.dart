@@ -9,6 +9,7 @@ class DatabaseService {
   final String uid;
   final Uuid unique = Uuid();
   DatabaseService({this.uid});
+  
 
   List<Order> _orderListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -53,7 +54,7 @@ class DatabaseService {
 
   Future updateOrderData(
       String name, int price, int quantity, String category) async {
-    return await orderCollection.document(uid).setData({
+    return await orderCollection.document(name).setData({
       'name': name,
       'price': price,
       'quantity': quantity,
@@ -63,7 +64,7 @@ class DatabaseService {
 
   Future updateTempOrderData(
       String name, int price, int quantity, String category, int tempQuantity) async {
-    return await userCollection.document(uid).collection('mycart').document(unique.v4()).setData({
+    return await userCollection.document(uid).collection('mycart').document(name).setData({
       'name': name,
       'price': price,
       'quantity': quantity,
@@ -78,6 +79,10 @@ class DatabaseService {
 
   Stream<List<TempOrder>> get tempOrders {
     return Firestore.instance.collection('users').document(uid).collection('mycart').snapshots().map(_tempOrderListFromSnapshot);
+  }
+
+  void deleteData(String uidOFDeleted) {
+    Firestore.instance.collection('users').document(uid).collection('mycart').document(uidOFDeleted).delete();
   }
 
 }
