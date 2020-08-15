@@ -18,7 +18,6 @@ class _OrderTileState extends State<OrderTile> {
   int counter2 = 0;
 
   Widget build(BuildContext context) {
-    
     final user = Provider.of<User>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
@@ -32,12 +31,19 @@ class _OrderTileState extends State<OrderTile> {
               title: Text(widget.order.name),
               subtitle: Text('Rp ' + widget.order.price.toString()),
               trailing: RaisedButton.icon(
-                  onPressed: counter2 == 0 ? null : () {
-                    setState(() {
-                      counter2 = 0;
-                      DatabaseService(uid: user.uid).updateTempOrderData(widget.order.name, widget.order.price, widget.order.quantity, widget.order.category, counter);
-                    });
-                  },
+                  onPressed: counter2 == 0
+                      ? null
+                      : () {
+                          setState(() {
+                            counter2 = 0;
+                            DatabaseService(uid: user.uid).updateTempOrderData(
+                                widget.order.name,
+                                widget.order.price,
+                                widget.order.quantity,
+                                widget.order.category,
+                                counter);
+                          });
+                        },
                   icon: Icon(Icons.check_box),
                   label: Text(
                     'CONFIRM',
@@ -49,7 +55,7 @@ class _OrderTileState extends State<OrderTile> {
                   color: Colors.blue[100]),
               leading: CircleAvatar(
                 radius: 50.0,
-                //backgroundImage: AssetImage('assets/${order.image}'),
+                // backgroundImage: AssetImage('assets/${order.image}'),
               ),
             ),
             Row(
