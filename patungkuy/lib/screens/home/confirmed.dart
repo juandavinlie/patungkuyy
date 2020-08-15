@@ -42,25 +42,35 @@ class _ConfirmedState extends State<Confirmed> {
         children: <Widget>[
           SizedBox(height: 20.0),
           Container(
+            // height: 50,
+            // width: 100,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/patungkuy.png'),
-                fit: BoxFit.cover,
+                //fit: BoxFit.cover,
               ),
               shape: BoxShape.circle,
               color: Colors.blue,
             ),
-            //color: Colors.blue,
-            child: Container(
-              color: Colors.blue[200],
-              padding: EdgeInsets.all(5),
-              child: Text('YOUR RECEIPT'),
-            ),
+            // //color: Colors.blue,
+            // child: Container(
+            //   color: Colors.blue[200],
+            //   padding: EdgeInsets.all(5),
+            //   child: Text('YOUR RECEIPT'),
+            // ),
             margin: EdgeInsets.all(5.0),
-            padding: EdgeInsets.all(25.0),
+            padding: EdgeInsets.fromLTRB(0.0, 60, 60, 60),
           ),
+          SizedBox(height: 10),
+          Card(
+              elevation: 100,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
+                child: Text('The Receipt'),
+              )),
           Expanded(
-            flex: 5,
+            flex: 9,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 0),
               child: Card(
@@ -77,7 +87,7 @@ class _ConfirmedState extends State<Confirmed> {
               ),
             ),
           ),
-          Expanded(flex: 2, child: Text('THE TOTAL')),
+          Expanded(flex: 1, child: Text('THE TOTAL')),
           SizedBox(
             width: 152.0,
             child: RaisedButton.icon(
