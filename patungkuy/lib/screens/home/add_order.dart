@@ -95,7 +95,7 @@ class _AddOrderState extends State<AddOrder> {
                 await ds.updateOrderData(_selectedItems, 20, 0, map[_selectedItems]);
                 Navigator.pop(context);
                 await DatabaseService(uid: unique.v4())
-                    .updateOrderData(_selectedItems, 20, 0, 'dairy');
+                    .updateOrderData(_selectedItems, 20, 0, map[_selectedItems]);
               }
             },
             color: Colors.blue[300],
