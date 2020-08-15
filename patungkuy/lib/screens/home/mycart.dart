@@ -37,15 +37,18 @@ class _MyCartState extends State<MyCart> {
   }
 
   Widget build(BuildContext context) {
-
     final user = Provider.of<User>(context);
 
     return StreamProvider<List<TempOrder>>.value(
         value: DatabaseService(uid: user.uid).tempOrders,
-          child: Scaffold(
+        child: Scaffold(
           backgroundColor: Colors.blue[100],
-          body: TempOrderList()
-        )
-    );
+          body: TempOrderList(),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {},
+            label: Text('ready'),
+          ),
+          //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        ));
   }
 }

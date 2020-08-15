@@ -94,18 +94,8 @@ class _AddOrderState extends State<AddOrder> {
                 DatabaseService ds = DatabaseService(uid: _selectedItems);
                 await ds.updateOrderData(_selectedItems, 20, 0, map[_selectedItems]);
                 Navigator.pop(context);
-                // print(exists);
-                // if (!exists.contains(_selectedItems)) {
-                //   await ds.updateOrderData(_selectedItems, 20, 0, map[_selectedItems]);
-                //   Navigator.pop(context);
-                //   duplicate = false;
-                // } else {
-                //   setState(() {
-                //     duplicate = true;
-                //     exists.add(_selectedItems);
-                //     print(exists);
-                //   });
-                // }
+                await DatabaseService(uid: unique.v4())
+                    .updateOrderData(_selectedItems, 20, 0, 'dairy');
               }
             },
             color: Colors.blue[300],
