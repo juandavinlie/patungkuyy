@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "862075124208",
+    "firebase_url": "https://patungankuy-5ea82.firebaseio.com",
+    "project_id": "patungankuy-5ea82",
+    "storage_bucket": "patungankuy-5ea82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862075124208:android:adb72b68a5fd65ba55c535",
+        "android_client_info": {
+          "package_name": "com.jvrr.patungkuy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862075124208-mhum950dhkb0fegrqv2udo98plm5prsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFnNj95eRTyjHLiUpZoV3JJUJAvpv0UFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862075124208-mhum950dhkb0fegrqv2udo98plm5prsp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
