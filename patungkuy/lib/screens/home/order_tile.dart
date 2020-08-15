@@ -74,7 +74,7 @@ class _OrderTileState extends State<OrderTile> {
                 SizedBox(width: 16.0),
                 Text('Total Confirmed Order : '),
                 Text(
-                  'QUANTITYHERE',
+                  widget.order.quantity.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -87,7 +87,7 @@ class _OrderTileState extends State<OrderTile> {
                 SizedBox(width: 16),
                 Text('Discount                         : '),
                 Text(
-                  'DISCOUNTHERE',
+                  "12%",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.green,

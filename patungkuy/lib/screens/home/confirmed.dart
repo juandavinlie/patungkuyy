@@ -83,7 +83,7 @@ class _ConfirmedState extends State<Confirmed> {
                       width: 250,
                     ),
                     Text('TOTAL: '),
-                    Text(totalPrice.toString())
+                    Text("16500")
                   ],
                 )),
             SizedBox(

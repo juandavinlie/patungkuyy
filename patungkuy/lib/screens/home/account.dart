@@ -32,7 +32,7 @@ class _AccountState extends State<Account> {
                   width: 30,
                 ),
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/scott.jpg'),
+                  backgroundImage: AssetImage('assets/Avatar.jpg'),
                   radius: 50.0,
                 ),
                 SizedBox(

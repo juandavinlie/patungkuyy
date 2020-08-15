@@ -29,7 +29,7 @@ class _TempOrderTileStopperState extends State<TempOrderTileStopper> {
         (widget.tempOrder.order.price * widget.tempOrder.tempQuantity);
     int discount = 0;
     discount += widget.tempOrder.order.price *
-        (widget.tempOrder.tempQuantity / 10).toInt();
+        ((widget.tempOrder.tempQuantity + widget.tempOrder.order.quantity) / 50).toInt();
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -56,8 +56,8 @@ class _TempOrderTileStopperState extends State<TempOrderTileStopper> {
                   ),
                 ],
               ),
-              trailing: Text(
-                "Rp ${totalPrice - discount}",
+              trailing: Text( totalPrice - discount > 0 ?
+                "Rp ${totalPrice - discount}" : "Rp 0",
                 style: TextStyle(fontSize: 22),
               ),
               // child: Row(

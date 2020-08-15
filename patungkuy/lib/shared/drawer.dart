@@ -39,7 +39,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
           accountName: Text('Hello,'),
           accountEmail: Text(widget.email),
           currentAccountPicture: CircleAvatar(
-            backgroundImage: AssetImage('assets/scott.jpg'),
+            backgroundImage: AssetImage('assets/Avatar.jpg'),
           ),
           onDetailsPressed: () {
             print(widget.email);
