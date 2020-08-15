@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:patungkuy/services/database.dart';
 import 'package:patungkuy/shared/constants.dart';
+import 'package:patungkuy/models/user.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class AddOrder extends StatefulWidget {
   @override
@@ -12,9 +16,11 @@ class _AddOrderState extends State<AddOrder> {
 
   String _selectedItems;
   int counter = 0;
-
+  final Uuid unique = Uuid();
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+
     return Form(
       key: _formKey,
       child: Column(
@@ -83,6 +89,7 @@ class _AddOrderState extends State<AddOrder> {
             onPressed: () async {
               if (_formKey.currentState.validate()) {
                 Navigator.pop(context);
+                await DatabaseService(uid: unique.v4()).updateOrderData(_selectedItems, 20, 0, 'dairy');
               }
             },
             color: Colors.blue[300],
