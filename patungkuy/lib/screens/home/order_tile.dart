@@ -20,16 +20,33 @@ class _OrderTileState extends State<OrderTile> {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 7.0),
       child: Card(
         child: Column(
           children: [
             ListTile(
               //onTap: () {},
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
-              title: Text(widget.order.name),
-              subtitle: Text('Rp ' + widget.order.price.toString()),
+              contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 0, 0),
+              title: Padding(
+                padding: const EdgeInsets.fromLTRB(2.0, 10.0, 0, 0),
+                child: Text(
+                  widget.order.name,
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.fromLTRB(2.0, 5.0, 10, 0),
+                child: Text(
+                  'Rp ' + widget.order.price.toString(),
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 14,
+                  ),
+                ),
+              ),
               trailing: RaisedButton.icon(
                   onPressed: counter2 == 0
                       ? null
@@ -55,17 +72,54 @@ class _OrderTileState extends State<OrderTile> {
                   color: Colors.blue[100]),
               leading: CircleAvatar(
                 radius: 50.0,
-                // backgroundImage: AssetImage('assets/${order.image}'),
+                backgroundImage: AssetImage('assets/${widget.order.name}.jpg'),
               ),
             ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                SizedBox(width: 16.0),
+                Text('Total Confirmed Order : '),
+                Text(
+                  'QUANTITYHERE',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: <Widget>[
+                SizedBox(width: 16),
+                Text('Discount                         : '),
+                Text(
+                  'DISCOUNTHERE',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.order.category,
-                    textAlign: TextAlign.right,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 2.0, horizontal: 10.0),
+                  child: Card(
+                    elevation: 0,
+                    color: Colors.amber[200],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.order.category,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -94,7 +148,7 @@ class _OrderTileState extends State<OrderTile> {
             ),
           ],
         ),
-        elevation: 10.0,
+        elevation: 2.0,
       ),
     );
   }
